@@ -16,8 +16,6 @@ venv/
 env/
 *.env
 
-# FAISS index files (can be large/binary)
-app/faiss_index/
 
 #data
 data
