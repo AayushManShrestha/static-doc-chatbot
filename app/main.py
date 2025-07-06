@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain_core.messages import HumanMessage, AIMessage
 from app.chain_utils import create_qa_chain
+from app.intent_router import detect_intent
 
 app = FastAPI()
 qa_chain = create_qa_chain()
@@ -34,15 +35,23 @@ def read_root():
 
 @app.post("/chat", response_model=ChatResponse)
 def chat_endpoint(req: ChatRequest):
+    # Check for hardcoded intent
+    intent_response = detect_intent(req.input)
+    if intent_response:
+        return {"answer": intent_response}
+
+    # Convert chat history
     chat_history = []
     for msg in req.history:
         if msg["role"] == "user":
             chat_history.append(HumanMessage(content=msg["content"]))
         else:
             chat_history.append(AIMessage(content=msg["content"]))
-    
+
+    # LangChain QA chain
     result = qa_chain.invoke({
         "input": req.input,
         "chat_history": chat_history
     })
+
     return {"answer": result["answer"]}
