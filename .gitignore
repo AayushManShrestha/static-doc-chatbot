@@ -1,0 +1,48 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Poetry
+*.lock
+poetry.lock
+
+# Environments
+.env
+.venv/
+venv/
+env/
+*.env
+
+# FAISS index files (can be large/binary)
+app/faiss_index/
+
+#data
+data
+
+# Streamlit
+.streamlit/
+
+# VSCode / IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Pytest / Caches
+.pytest_cache/
+.cache/
+*.log
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Jupyter (if any)
+.ipynb_checkpoints/
