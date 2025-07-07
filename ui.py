@@ -1,11 +1,9 @@
 import os
-from dotenv import load_dotenv
 import streamlit as st
 import requests
 
-load_dotenv()
-API_URL = os.getenv("API_URL", "http://localhost:8000/chat")
-
+# API_URL = "https://adex-chatbot-api.onrender.com/chat"
+API_URL = "http://localhost:8000/chat"
 
 st.set_page_config(page_title="Document Chatbot")
 st.title("📄 Static Document Chatbot")
