@@ -22,6 +22,9 @@ app/faiss_index/
 #data
 data
 
+# UI
+ui
+
 # Streamlit
 .streamlit/
 

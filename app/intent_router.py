@@ -52,4 +52,4 @@ def detect_intent(user_input: str) -> str | None:
             "I'll try to find the most accurate answer using our internal knowledge."
         )
 
-    return None  # no hardcoded intent matched
+    return None

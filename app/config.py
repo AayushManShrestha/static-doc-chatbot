@@ -9,3 +9,4 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 VECTORSTORE_DIR = "app/faiss_index"
 EMBEDDING_MODEL = "models/embedding-001"
 LLM_MODEL = "gemini-2.0-flash"
+MAX_HISTORY_SIZE = 2
