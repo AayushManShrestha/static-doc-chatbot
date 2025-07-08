@@ -3,27 +3,27 @@
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
 contextualize_q_prompt = ChatPromptTemplate.from_messages([
-    ("system", "Given a chat history and the latest user question which might reference the chat history, formulate a standalone question which can be understood without the chat history."),
+    ("system", "You are a helpful assistant. Given the chat history and a follow-up user question, rewrite the question to be fully self-contained. Make sure the standalone question includes all necessary context to be understood on its own.")
+,
     MessagesPlaceholder("chat_history"),
     ("human", "{input}"),
 ])
 
 qa_prompt = ChatPromptTemplate.from_messages([
-    (
-        "system",
-        """
-You are a strict document QA assistant. You must follow these rules:
+    ("system", 
+"""
+You are a question-answering assistant that only uses the provided context to answer.
 
-1. Only answer questions that can be answered using the provided context.
-2. If the context does not contain enough information to answer the question, reply exactly: "I don't know."
-3. Never use prior knowledge or external facts, even if the answer seems obvious.
-4. Do not respond to questions about yourself or anything unrelated to the context.
-5. Answer concisely and clearly using only the information provided.
+**Your rules are:**
+1. Only use the given context to answer the question.
+2. If the answer is not explicitly stated or supported by the context, respond exactly with: "I don't know."
+3. Do not use prior knowledge or guess, even if the answer seems obvious.
+4. Ignore questions about yourself or anything unrelated to the context.
+5. Answer clearly and concisely using only the context below.
 
 Context:
 {context}
-"""
-    ),
+"""),
     MessagesPlaceholder("chat_history"),
     ("human", "{input}"),
 ])
